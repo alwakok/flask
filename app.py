@@ -4,9 +4,7 @@ from models import CalorieCalculator
 
 app = Flask(__name__)
 
-# Инициализация базы данных
 init_db()
-
 
 
 @app.route('/')
@@ -24,22 +22,18 @@ def calculate():
         activity = request.form.get('activity', 'sedentary')
         goal = request.form.get('goal', 'maintenance')
 
-        # Основные расчеты
         bmr = CalorieCalculator.calculate_bmr(gender, weight, height, age)
         tdee = CalorieCalculator.calculate_tdee(bmr, activity)
         target_calories = CalorieCalculator.calculate_target_calories(tdee, goal)
 
-        # Расчет БЖУ
         macros = CalorieCalculator.calculate_macronutrients(target_calories, goal, weight)
         recommendations = CalorieCalculator.get_macro_recommendations(goal)
 
-        # Сохранение в базу данных
         CalorieCalculator.save_calculation(
             gender, age, weight, height, goal, activity,
             bmr, tdee, target_calories, macros
         )
 
-        # Определение названий
         goal_names = {
             'loss': 'Похудение',
             'maintenance': 'Поддержание веса',
@@ -79,4 +73,5 @@ def history():
 
 
 if __name__ == '__main__':
+
     app.run(debug=True)
