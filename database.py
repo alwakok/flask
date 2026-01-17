@@ -9,10 +9,8 @@ def init_db():
     conn = sqlite3.connect('data/calories.db')
     cursor = conn.cursor()
 
-    # Удаляем старую таблицу, если она существует
     cursor.execute('DROP TABLE IF EXISTS calculations')
-
-    # Создаем новую таблицу с правильной структурой
+    
     cursor.execute('''
         CREATE TABLE calculations (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -43,4 +41,5 @@ def init_db():
 def get_db_connection():
     conn = sqlite3.connect('data/calories.db')
     conn.row_factory = sqlite3.Row
+
     return conn
