@@ -17,7 +17,6 @@ body {
     padding: 0 20px;
 }
 
-/* Навигация */
 .navbar {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -53,7 +52,6 @@ body {
     opacity: 0.8;
 }
 
-/* Герой секция */
 .hero {
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     padding: 4rem 0;
@@ -75,7 +73,6 @@ body {
     margin: 0 auto 2rem;
 }
 
-/* Кнопки */
 .btn {
     display: inline-block;
     padding: 0.8rem 2rem;
@@ -107,7 +104,6 @@ body {
     background: #2d3748;
 }
 
-/* Особенности */
 .features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -133,7 +129,6 @@ body {
     font-size: 1.3rem;
 }
 
-/* Калькулятор */
 .calculator-container {
     background: white;
     padding: 2rem;
@@ -180,7 +175,6 @@ body {
     border-color: #667eea;
 }
 
-/* Результаты */
 .result-card {
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     padding: 2rem;
@@ -245,7 +239,6 @@ body {
     font-size: 0.9rem;
 }
 
-/* История */
 .history-container {
     margin: 2rem auto;
     max-width: 1000px;
@@ -334,7 +327,6 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Футер */
 footer {
     background: #2d3748;
     color: white;
@@ -343,7 +335,6 @@ footer {
     margin-top: 4rem;
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
     .navbar .container {
         flex-direction: column;
@@ -372,7 +363,6 @@ footer {
     }
 }
 
-/* Стили для БЖУ */
 .macros-section {
     background: white;
     padding: 2rem;
@@ -510,7 +500,6 @@ footer {
     color: #2d3748;
 }
 
-/* Стили для плана питания */
 .meal-plan-section {
     background: white;
     padding: 2rem;
@@ -549,7 +538,6 @@ footer {
     color: #4a5568;
 }
 
-/* Стили для истории с БЖУ */
 .macros-summary {
     margin-top: 1rem;
     padding-top: 1rem;
@@ -591,7 +579,6 @@ footer {
     background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
 }
 
-/* Дополнительные стили */
 .form-section {
     background: white;
     padding: 1.5rem;
@@ -676,7 +663,6 @@ footer {
     font-weight: 500;
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
     .macros-grid {
         grid-template-columns: 1fr;
@@ -710,4 +696,5 @@ footer {
         justify-content: flex-start;
         padding-left: 10px;
     }
+
 }
