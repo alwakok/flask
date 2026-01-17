@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="history-container">
+    <h2>История расчетов</h2>
+    
+    {% if calculations %}
+    <div class="history-list">
+        {% for calc in calculations %}
+        <div class="history-card">
+            <div class="history-header">
+                <h3>Расчет от {{ calc['timestamp'] }}</h3>
+                <span class="goal-badge {{ calc['goal'] }}">
+                    {{ "Похудение" if calc['goal'] == 'loss' else "Набор массы" if calc['goal'] == 'gain' else "Поддержание" }}
+                </span>
+            </div>
+            
+            <div class="history-info">
+                <div class="info-row">
+                    <span>Пол/Возраст:</span>
+                    <span>{{ "Муж" if calc['gender'] == 'male' else "Жен" }}, {{ calc['age'] }} лет</span>
+                </div>
+                <div class="info-row">
+                    <span>Вес/Рост:</span>
+                    <span>{{ calc['weight'] }} кг / {{ calc['height'] }} см</span>
+                </div>
+                <div class="info-row">
+                    <span>Активность:</span>
+                    <span>{{ "Сидячая" if calc['activity'] == 'sedentary' else "Легкая" if calc['activity'] == 'light' else "Умеренная" if calc['activity'] == 'moderate' else "Высокая" if calc['activity'] == 'active' else "Очень высокая" }}</span>
+                </div>
+            </div>
+
+            <div class="calorie-summary">
+                <div class="summary-item">
+                    <span>BMR:</span>
+                    <strong>{{ calc['bmr'] }}</strong>
+                </div>
+                <div class="summary-item">
+                    <span>TDEE:</span>
+                    <strong>{{ calc['tdee'] }}</strong>
+                </div>
+                <div class="summary-item highlight">
+                    <span>Целевые:</span>
+                    <strong>{{ calc['target_calories'] }}</strong>
+                </div>
+            </div>
+
+            <div class="macros-summary">
+                <h4>БЖУ:</h4>
+                <div class="macros-bars">
+                    <div class="macro-bar protein" style="width: {{ calc['protein_percent'] }}%">
+                        <span>Б: {{ calc['protein_g'] }}г ({{ calc['protein_percent'] }}%)</span>
+                    </div>
+                    <div class="macro-bar fat" style="width: {{ calc['fat_percent'] }}%">
+                        <span>Ж: {{ calc['fat_g'] }}г ({{ calc['fat_percent'] }}%)</span>
+                    </div>
+                    <div class="macro-bar carbs" style="width: {{ calc['carbs_percent'] }}%">
+                        <span>У: {{ calc['carbs_g'] }}г ({{ calc['carbs_percent'] }}%)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-history">
+        <p>Вы еще не сделали ни одного расчета.</p>
+        <a href="{{ url_for('calculate') }}" class="btn btn-primary">Сделать расчет</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

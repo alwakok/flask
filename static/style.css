@@ -1,0 +1,713 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f7fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Навигация */
+.navbar {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+.nav-links a:hover {
+    opacity: 0.8;
+}
+
+/* Герой секция */
+.hero {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 4rem 0;
+    text-align: center;
+    border-radius: 0 0 20px 20px;
+    margin-bottom: 3rem;
+}
+
+.hero-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #2d3748;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: #4a5568;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+/* Кнопки */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background: #4a5568;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #2d3748;
+}
+
+/* Особенности */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card h3 {
+    color: #2d3748;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+/* Калькулятор */
+.calculator-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin: 2rem auto;
+    max-width: 800px;
+}
+
+.calculator-container h2 {
+    color: #2d3748;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.calculator-form {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.form-group input,
+.form-group select {
+    padding: 0.8rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* Результаты */
+.result-card {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.result-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.result-item:last-child {
+    border-bottom: none;
+}
+
+.calorie-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.calorie-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.calorie-card.highlight {
+    border: 2px solid #667eea;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.calorie-card.highlight .calorie-value {
+    color: white;
+}
+
+.calorie-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin: 0.5rem 0;
+}
+
+.calorie-desc {
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+/* История */
+.history-container {
+    margin: 2rem auto;
+    max-width: 1000px;
+}
+
+.history-list {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.history-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.goal-badge {
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.goal-badge.loss {
+    background: #fed7d7;
+    color: #c53030;
+}
+
+.goal-badge.gain {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.goal-badge.maintenance {
+    background: #bee3f8;
+    color: #2c5282;
+}
+
+.history-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background: #f7fafc;
+    border-radius: 5px;
+}
+
+.calorie-summary {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    background: #f7fafc;
+    border-radius: 8px;
+}
+
+.summary-item {
+    text-align: center;
+}
+
+.summary-item.highlight {
+    color: #667eea;
+    font-weight: 700;
+}
+
+.empty-history {
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Футер */
+footer {
+    background: #2d3748;
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 4rem;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+
+    .calorie-results {
+        grid-template-columns: 1fr;
+    }
+
+    .result-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .calorie-summary {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+/* Стили для БЖУ */
+.macros-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 2rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.section-subtitle {
+    color: #718096;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.macros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.macro-card {
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 2px solid #e2e8f0;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.macro-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.macro-card.protein {
+    border-color: #4299e1;
+}
+
+.macro-card.fat {
+    border-color: #ed8936;
+}
+
+.macro-card.carbs {
+    border-color: #48bb78;
+}
+
+.macro-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.macro-header h4 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.macro-percent {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.macro-card.protein .macro-percent {
+    color: #4299e1;
+}
+
+.macro-card.fat .macro-percent {
+    color: #ed8936;
+}
+
+.macro-card.carbs .macro-percent {
+    color: #48bb78;
+}
+
+.macro-values {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.macro-value {
+    text-align: center;
+    padding: 0.5rem;
+    background: #f7fafc;
+    border-radius: 5px;
+}
+
+.macro-value .value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.macro-value .label {
+    font-size: 0.9rem;
+    color: #718096;
+}
+
+.macro-recommendation {
+    padding-top: 1rem;
+    border-top: 1px solid #e2e8f0;
+    font-size: 0.9rem;
+    color: #4a5568;
+}
+
+.macro-recommendation strong {
+    color: #2d3748;
+}
+
+.macros-total {
+    background: #f7fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-item {
+    text-align: center;
+}
+
+.total-item span {
+    display: block;
+    color: #718096;
+    margin-bottom: 0.5rem;
+}
+
+.total-item strong {
+    font-size: 1.2rem;
+    color: #2d3748;
+}
+
+/* Стили для плана питания */
+.meal-plan-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 2rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.meal-plan {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.meal-item {
+    padding: 1.5rem;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.meal-item:hover {
+    transform: translateY(-3px);
+}
+
+.meal-item h4 {
+    color: #2d3748;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.meal-item p {
+    margin: 0.5rem 0;
+    color: #4a5568;
+}
+
+/* Стили для истории с БЖУ */
+.macros-summary {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.macros-bars {
+    display: flex;
+    height: 40px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.macro-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 500;
+    font-size: 0.85rem;
+    padding: 0 10px;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.macro-bar.protein {
+    background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+}
+
+.macro-bar.fat {
+    background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+}
+
+.macro-bar.carbs {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+}
+
+/* Дополнительные стили */
+.form-section {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.form-section h3 {
+    color: #2d3748;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-note {
+    background: #e6fffa;
+    padding: 1rem;
+    border-radius: 5px;
+    border-left: 4px solid #38b2ac;
+    margin: 1.5rem 0;
+}
+
+.form-note p {
+    margin: 0;
+    color: #234e52;
+}
+
+.btn-large {
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.result-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid #e2e8f0;
+}
+
+.user-info-section {
+    background: #f7fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.user-info-section h4 {
+    color: #2d3748;
+    margin-bottom: 1rem;
+}
+
+.calorie-info {
+    font-size: 0.85rem;
+    color: #718096;
+    margin-top: 0.25rem;
+}
+
+.goal-loss {
+    color: #e53e3e;
+    font-weight: 500;
+}
+
+.goal-gain {
+    color: #38a169;
+    font-weight: 500;
+}
+
+.goal-maintenance {
+    color: #3182ce;
+    font-weight: 500;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .macros-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .macros-total {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .meal-plan {
+        grid-template-columns: 1fr;
+    }
+
+    .macro-values {
+        grid-template-columns: 1fr;
+    }
+
+    .result-actions {
+        flex-direction: column;
+    }
+
+    .macros-bars {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .macro-bar {
+        height: 30px;
+        justify-content: flex-start;
+        padding-left: 10px;
+    }
+}

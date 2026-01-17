@@ -1,0 +1,246 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="calculator-container">
+    <h2>Калькулятор калорий и БЖУ</h2>
+
+    {% if target_calories %}
+    <div class="result-card">
+        <h3>📊 Результаты расчета</h3>
+
+        <!-- Основная информация -->
+        <div class="user-info-section">
+            <h4>Ваши данные:</h4>
+            <div class="result-grid">
+                <div class="result-item">
+                    <span class="label">Пол:</span>
+                    <span class="value">{{ "Мужской" if gender == "male" else "Женский" }}</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">Возраст:</span>
+                    <span class="value">{{ age }} лет</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">Вес:</span>
+                    <span class="value">{{ weight }} кг</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">Рост:</span>
+                    <span class="value">{{ height }} см</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">Активность:</span>
+                    <span class="value">{{ activity }}</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">Цель:</span>
+                    <span class="value goal-{{ goal_key }}">{{ goal }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Расчет калорий -->
+        <div class="calorie-results">
+            <div class="calorie-card">
+                <h4>BMR</h4>
+                <p class="calorie-value">{{ bmr }}</p>
+                <p class="calorie-desc">Базовый метаболизм</p>
+                <p class="calorie-info">Калории в состоянии покоя</p>
+            </div>
+            <div class="calorie-card">
+                <h4>TDEE</h4>
+                <p class="calorie-value">{{ tdee }}</p>
+                <p class="calorie-desc">Общий расход</p>
+                <p class="calorie-info">С учетом активности</p>
+            </div>
+            <div class="calorie-card highlight">
+                <h4>Целевые калории</h4>
+                <p class="calorie-value">{{ target_calories }}</p>
+                <p class="calorie-desc">Дневная норма</p>
+                <p class="calorie-info">Для цели "{{ goal }}"</p>
+            </div>
+        </div>
+
+        <!-- Расчет БЖУ -->
+        <div class="macros-section">
+            <h3>🥩 Норма БЖУ</h3>
+            <p class="section-subtitle">Рекомендуемое распределение макронутриентов</p>
+
+            <div class="macros-grid">
+                <div class="macro-card protein">
+                    <div class="macro-header">
+                        <h4>Белки</h4>
+                        <span class="macro-percent">{{ macros.protein.percent }}%</span>
+                    </div>
+                    <div class="macro-values">
+                        <div class="macro-value">
+                            <span class="value">{{ macros.protein.grams }} г</span>
+                            <span class="label">в день</span>
+                        </div>
+                        <div class="macro-value">
+                            <span class="value">{{ macros.protein.calories|int }} ккал</span>
+                            <span class="label">энергия</span>
+                        </div>
+                    </div>
+                    <div class="macro-recommendation">
+                        <strong>Рекомендация:</strong>
+                        <p>{{ recommendations.protein }}</p>
+                    </div>
+                </div>
+
+                <div class="macro-card fat">
+                    <div class="macro-header">
+                        <h4>Жиры</h4>
+                        <span class="macro-percent">{{ macros.fat.percent }}%</span>
+                    </div>
+                    <div class="macro-values">
+                        <div class="macro-value">
+                            <span class="value">{{ macros.fat.grams }} г</span>
+                            <span class="label">в день</span>
+                        </div>
+                        <div class="macro-value">
+                            <span class="value">{{ macros.fat.calories|int }} ккал</span>
+                            <span class="label">энергия</span>
+                        </div>
+                    </div>
+                    <div class="macro-recommendation">
+                        <strong>Рекомендация:</strong>
+                        <p>{{ recommendations.fat }}</p>
+                    </div>
+                </div>
+
+                <div class="macro-card carbs">
+                    <div class="macro-header">
+                        <h4>Углеводы</h4>
+                        <span class="macro-percent">{{ macros.carbs.percent }}%</span>
+                    </div>
+                    <div class="macro-values">
+                        <div class="macro-value">
+                            <span class="value">{{ macros.carbs.grams }} г</span>
+                            <span class="label">в день</span>
+                        </div>
+                        <div class="macro-value">
+                            <span class="value">{{ macros.carbs.calories|int }} ккал</span>
+                            <span class="label">энергия</span>
+                        </div>
+                    </div>
+                    <div class="macro-recommendation">
+                        <strong>Рекомендация:</strong>
+                        <p>{{ recommendations.carbs }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Итоговая сумма -->
+            <div class="macros-total">
+                <div class="total-item">
+                    <span>Общее количество калорий:</span>
+                    <strong>{{ macros.total_calories|int }} ккал/день</strong>
+                </div>
+                <div class="total-item">
+                    <span>Распределение:</span>
+                    <strong>Б:{{ macros.protein.percent }}% Ж:{{ macros.fat.percent }}% У:{{ macros.carbs.percent }}%</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Питание по приемам пищи -->
+        <div class="meal-plan-section">
+            <h3>🍽️ Примерное распределение по приемам пищи</h3>
+            <div class="meal-plan">
+                <div class="meal-item">
+                    <h4>Завтрак (25%)</h4>
+                    <p>{{ (target_calories * 0.25)|int }} ккал</p>
+                    <p>Белки: {{ (macros.protein.grams * 0.25)|round(1) }} г</p>
+                </div>
+                <div class="meal-item">
+                    <h4>Обед (35%)</h4>
+                    <p>{{ (target_calories * 0.35)|int }} ккал</p>
+                    <p>Белки: {{ (macros.protein.grams * 0.35)|round(1) }} г</p>
+                </div>
+                <div class="meal-item">
+                    <h4>Ужин (25%)</h4>
+                    <p>{{ (target_calories * 0.25)|int }} ккал</p>
+                    <p>Белки: {{ (macros.protein.grams * 0.25)|round(1) }} г</p>
+                </div>
+                <div class="meal-item">
+                    <h4>Перекусы (15%)</h4>
+                    <p>{{ (target_calories * 0.15)|int }} ккал</p>
+                    <p>Белки: {{ (macros.protein.grams * 0.15)|round(1) }} г</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="result-actions">
+            <a href="{{ url_for('calculate') }}" class="btn btn-primary">Новый расчет</a>
+            <a href="{{ url_for('history') }}" class="btn btn-secondary">Посмотреть историю</a>
+        </div>
+    </div>
+
+    {% else %}
+    <form method="POST" class="calculator-form">
+        <div class="form-section">
+            <h3>Основная информация</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="gender">Пол *</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">Выберите пол</option>
+                        <option value="male">Мужской</option>
+                        <option value="female">Женский</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="age">Возраст (лет) *</label>
+                    <input type="number" id="age" name="age" min="15" max="100" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="weight">Вес (кг) *</label>
+                    <input type="number" id="weight" name="weight" min="30" max="300" step="0.1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="height">Рост (см) *</label>
+                    <input type="number" id="height" name="height" min="100" max="250" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Активность и цель</h3>
+            <div class="form-group">
+                <label for="activity">Уровень активности *</label>
+                <select id="activity" name="activity" required>
+                    <option value="sedentary">Сидячий образ жизни (офисная работа, мало движения)</option>
+                    <option value="light">Легкая активность (1-3 тренировки в неделю)</option>
+                    <option value="moderate">Умеренная активность (3-5 тренировок в неделю)</option>
+                    <option value="active">Высокая активность (6-7 тренировок в неделю)</option>
+                    <option value="very_active">Очень высокая активность (профессиональный спорт, физическая работа)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="goal">Ваша цель *</label>
+                <select id="goal" name="goal" required>
+                    <option value="loss">Похудение (создать дефицит калорий)</option>
+                    <option value="maintenance">Поддержание текущего веса</option>
+                    <option value="gain">Набор мышечной массы (профицит калорий)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-note">
+            <p><strong>Примечание:</strong> Расчет БЖУ автоматически адаптируется под вашу цель и физические параметры.</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-large">
+            Рассчитать калории и БЖУ
+        </button>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}
