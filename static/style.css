@@ -813,12 +813,6 @@ body {
     text-align: center;
 }
 
-.quick-actions {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
 
 .quick-actions h3 {
     color: #2d3748;
@@ -1384,5 +1378,160 @@ footer {
 
     .hero-content p {
         font-size: 1rem;
+    }
+}
+
+/* Стили для статуса пользователя в калькуляторе */
+.user-status {
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-status.auth {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.user-status.guest {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    color: #856404;
+}
+
+.status-icon {
+    font-size: 1.2rem;
+}
+
+.status-text {
+    flex: 1;
+    font-weight: 500;
+}
+
+
+.status-link:hover {
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+}
+
+/* Сообщение о сохранении для гостей */
+
+.save-notice p {
+    margin: 0;
+}
+
+.save-notice a {
+    color: #007bff;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.save-notice a:hover {
+    text-decoration: underline;
+}
+
+/* Информационная секция на главной */
+.info-section {
+    margin: 3rem 0;
+}
+
+.info-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.info-card h3 {
+    color: #2d3748;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.info-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.info-icon {
+    font-size: 2rem;
+    background: #f7fafc;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.info-content h4 {
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.info-content p {
+    color: #718096;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.info-actions {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.info-note {
+    margin-top: 1rem;
+    color: #718096;
+}
+
+.info-note a {
+    color: #4299e1;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.info-note a:hover {
+    text-decoration: underline;
+}
+
+/* Адаптивность для новых элементов */
+@media (max-width: 768px) {
+    .user-status {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .status-link {
+        align-self: stretch;
+        text-align: center;
+    }
+
+    .info-list {
+        grid-template-columns: 1fr;
+    }
+
+    .info-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 }

@@ -5,11 +5,8 @@ from models import CalorieCalculator, User
 app = Flask(__name__)
 app.secret_key = 'your-secret-key-here-change-this-in-production'
 
-# Инициализация базы данных при запуске
 init_db()
 
-
-# Контекстный процессор для автоматической передачи user во все шаблоны
 @app.context_processor
 def inject_user():
     user = None
@@ -18,13 +15,12 @@ def inject_user():
     return dict(user=user)
 
 
-# Декоратор для проверки авторизации
-def login_required(f):
+def auth_required_for_history(f):
     from functools import wraps
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if 'user' not in session:
-            flash('Пожалуйста, войдите в систему для доступа к этой странице', 'warning')
+            flash('Для просмотра истории расчетов необходимо войти в систему', 'info')
             return redirect(url_for('login'))
         return f(*args, **kwargs)
 
@@ -85,7 +81,7 @@ def logout():
 
 
 @app.route('/dashboard')
-@login_required
+@auth_required_for_history
 def dashboard():
     user = session['user']
     calculations = CalorieCalculator.get_user_calculations(user['id'])
@@ -94,12 +90,6 @@ def dashboard():
 
 @app.route('/calculate', methods=['GET', 'POST'])
 def calculate():
-    # Если пользователь не авторизован, перенаправляем на логин
-    if 'user' not in session:
-        flash('Для использования калькулятора необходимо войти в систему', 'info')
-        return redirect(url_for('login'))
-
-    user = session['user']
 
     if request.method == 'POST':
         try:
@@ -114,22 +104,23 @@ def calculate():
                 flash('Пожалуйста, укажите пол', 'danger')
                 return redirect(url_for('calculate'))
 
-            # Основные расчеты
             bmr = CalorieCalculator.calculate_bmr(gender, weight, height, age)
             tdee = CalorieCalculator.calculate_tdee(bmr, activity)
             target_calories = CalorieCalculator.calculate_target_calories(tdee, goal)
 
-            # Расчет БЖУ
             macros = CalorieCalculator.calculate_macronutrients(target_calories, goal, weight)
             recommendations = CalorieCalculator.get_macro_recommendations(goal)
 
-            # Сохранение в базу данных
-            CalorieCalculator.save_calculation(
-                user['id'], gender, age, weight, height, goal, activity,
-                bmr, tdee, target_calories, macros
-            )
+            user = session.get('user')
+            if user:
+                CalorieCalculator.save_calculation(
+                    user['id'], gender, age, weight, height, goal, activity,
+                    bmr, tdee, target_calories, macros
+                )
+                flash('Расчет сохранен в вашей истории', 'success')
+            else:
+                flash('Расчет не сохранен. Для сохранения истории войдите в систему', 'info')
 
-            # Определение названий
             goal_names = {
                 'loss': 'Похудение',
                 'maintenance': 'Поддержание веса',
@@ -168,7 +159,7 @@ def calculate():
 
 
 @app.route('/history')
-@login_required
+@auth_required_for_history
 def history():
     user = session['user']
     calculations = CalorieCalculator.get_user_calculations(user['id'])
@@ -176,7 +167,7 @@ def history():
 
 
 @app.route('/delete_calculation/<int:calculation_id>', methods=['POST'])
-@login_required
+@auth_required_for_history
 def delete_calculation(calculation_id):
     user = session['user']
     success = CalorieCalculator.delete_calculation(user['id'], calculation_id)
@@ -201,6 +192,4 @@ def internal_server_error(e):
 
 
 if __name__ == '__main__':
-    print("Запуск сервера...")
-    print("Откройте: http://localhost:5000")
     app.run(debug=True, port=5000)

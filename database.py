@@ -11,7 +11,6 @@ def init_db():
     conn = sqlite3.connect('data/calories.db')
     cursor = conn.cursor()
 
-    # Создаем таблицу пользователей
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -23,7 +22,6 @@ def init_db():
         )
     ''')
 
-    # Создаем таблицу для истории расчетов с user_id
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS calculations (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -60,10 +58,8 @@ def get_db_connection():
 
 
 def hash_password(password):
-    """Хеширование пароля"""
     return hashlib.sha256(password.encode()).hexdigest()
 
 
 def create_session_token():
-    """Создание токена сессии"""
     return secrets.token_hex(32)

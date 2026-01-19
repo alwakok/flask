@@ -3,7 +3,19 @@
 {% block content %}
 <div class="calculator-container">
     <h2>Калькулятор калорий и БЖУ</h2>
-         <p class="welcome-text">Привет, {{ user.username }}! Рассчитайте вашу норму калорий.</p>
+
+    {% if user %}
+    <div class="user-status auth">
+        <span class="status-icon">✓</span>
+        <span class="status-text">Вы вошли как {{ user.username }}. Расчеты будут сохранены.</span>
+    </div>
+    {% else %}
+    <div class="user-status guest">
+        <span class="status-icon">ℹ️</span>
+        <span class="status-text">Вы используете калькулятор без регистрации. Результаты не будут сохранены.</span>
+    </div>
+    {% endif %}
+
     {% if target_calories %}
     <div class="result-card">
         <h3>📊 Результаты расчета</h3>
@@ -168,7 +180,11 @@
 
         <div class="result-actions">
             <a href="{{ url_for('calculate') }}" class="btn btn-primary">Новый расчет</a>
-            <a href="{{ url_for('history') }}" class="btn btn-secondary">Посмотреть историю</a>
+            {% if user %}
+                <a href="{{ url_for('history') }}" class="btn btn-secondary">Посмотреть историю</a>
+            {% else %}
+                <a href="{{ url_for('register') }}" class="btn btn-secondary">Сохранять историю</a>
+            {% endif %}
         </div>
     </div>
 
@@ -238,5 +254,4 @@
     </form>
     {% endif %}
 </div>
-
 {% endblock %}

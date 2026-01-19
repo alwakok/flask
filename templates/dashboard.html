@@ -8,7 +8,6 @@
     </div>
 
     <div class="dashboard-grid">
-        <!-- Левая колонка - информация о пользователе -->
         <div class="dashboard-sidebar">
             <div class="user-info-card">
                 <h3>👤 Ваш профиль</h3>
@@ -35,19 +34,8 @@
                     <a href="{{ url_for('logout') }}" class="btn btn-warning">Выйти из аккаунта</a>
                 </div>
             </div>
-
-            <div class="quick-actions">
-                <h3>📊 Быстрые действия</h3>
-                <a href="{{ url_for('calculate') }}" class="btn-action">
-                    <span>🧮 Новый расчет</span>
-                </a>
-                <a href="{{ url_for('history') }}" class="btn-action">
-                    <span>📋 Мои расчеты</span>
-                </a>
-            </div>
         </div>
 
-        <!-- Правая колонка - статистика и последние расчеты -->
         <div class="dashboard-main">
             <div class="stats-section">
                 <h3>📈 Ваша статистика</h3>
