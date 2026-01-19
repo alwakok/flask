@@ -2,19 +2,31 @@
 
 {% block content %}
 <div class="history-container">
-    <h2>История расчетов</h2>
-    
+    <h2>Мои расчеты</h2>
+    <p class="history-info">Здесь хранятся только ваши расчеты</p>
+
     {% if calculations %}
+    <div class="history-controls">
+        <p>Всего расчетов: {{ calculations|length }}</p>
+        <a href="{{ url_for('calculate') }}" class="btn btn-primary">Новый расчет</a>
+    </div>
+
     <div class="history-list">
         {% for calc in calculations %}
         <div class="history-card">
             <div class="history-header">
                 <h3>Расчет от {{ calc['timestamp'] }}</h3>
-                <span class="goal-badge {{ calc['goal'] }}">
-                    {{ "Похудение" if calc['goal'] == 'loss' else "Набор массы" if calc['goal'] == 'gain' else "Поддержание" }}
-                </span>
+                <div class="history-actions">
+                    <span class="goal-badge {{ calc['goal'] }}">
+                        {{ "Похудение" if calc['goal'] == 'loss' else "Набор массы" if calc['goal'] == 'gain' else "Поддержание" }}
+                    </span>
+                    <form method="POST" action="{{ url_for('delete_calculation', calculation_id=calc.id) }}"
+                          onsubmit="return confirm('Удалить этот расчет?')">
+                        <button type="submit" class="btn-delete">🗑️ Удалить</button>
+                    </form>
+                </div>
             </div>
-            
+
             <div class="history-info">
                 <div class="info-row">
                     <span>Пол/Возраст:</span>
@@ -64,8 +76,8 @@
     </div>
     {% else %}
     <div class="empty-history">
-        <p>Вы еще не сделали ни одного расчета.</p>
-        <a href="{{ url_for('calculate') }}" class="btn btn-primary">Сделать расчет</a>
+        <p>У вас еще нет расчетов.</p>
+        <a href="{{ url_for('calculate') }}" class="btn btn-primary">Сделать первый расчет</a>
     </div>
     {% endif %}
 </div>

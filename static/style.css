@@ -17,11 +17,15 @@ body {
     padding: 0 20px;
 }
 
+/* Навигация */
 .navbar {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     padding: 1rem 0;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .navbar .container {
@@ -45,13 +49,119 @@ body {
     color: white;
     text-decoration: none;
     font-weight: 500;
-    transition: opacity 0.3s;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s;
 }
 
 .nav-links a:hover {
-    opacity: 0.8;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
+/* Flash сообщения */
+.flash-messages-container {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    z-index: 1000;
+    max-width: 400px;
+}
+
+.flash-message {
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: slideIn 0.3s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.flash-message:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+}
+
+.flash-success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.flash-success:before {
+    background: #28a745;
+}
+
+.flash-danger {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.flash-danger:before {
+    background: #dc3545;
+}
+
+.flash-warning {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.flash-warning:before {
+    background: #ffc107;
+}
+
+.flash-info {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+.flash-info:before {
+    background: #17a2b8;
+}
+
+.flash-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: inherit;
+    opacity: 0.7;
+    margin-left: 10px;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.flash-close:hover {
+    opacity: 1;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Герой секция */
 .hero {
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     padding: 4rem 0;
@@ -73,6 +183,15 @@ body {
     margin: 0 auto 2rem;
 }
 
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Кнопки */
 .btn {
     display: inline-block;
     padding: 0.8rem 2rem;
@@ -102,8 +221,25 @@ body {
 
 .btn-secondary:hover {
     background: #2d3748;
+    transform: translateY(-2px);
 }
 
+.btn-warning {
+    background: #ed8936;
+    color: white;
+}
+
+.btn-warning:hover {
+    background: #dd6b20;
+    transform: translateY(-2px);
+}
+
+.btn-large {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}
+
+/* Особенности */
 .features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -117,6 +253,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     transition: transform 0.3s;
+    text-align: center;
 }
 
 .feature-card:hover {
@@ -129,6 +266,102 @@ body {
     font-size: 1.3rem;
 }
 
+.feature-card p {
+    color: #718096;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+/* Формы авторизации */
+.auth-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 0 20px;
+}
+
+.auth-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.auth-card h2 {
+    color: #2d3748;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-form {
+    margin: 1.5rem 0;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 0.25rem;
+    color: #718096;
+    font-size: 0.85rem;
+}
+
+.register-link {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+.register-link a {
+    color: #4299e1;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+.auth-links {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+.auth-links a {
+    color: #4299e1;
+    text-decoration: none;
+}
+
+.auth-links a:hover {
+    text-decoration: underline;
+}
+
+/* Калькулятор */
 .calculator-container {
     background: white;
     padding: 2rem;
@@ -140,8 +373,14 @@ body {
 
 .calculator-container h2 {
     color: #2d3748;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     text-align: center;
+}
+
+.welcome-text {
+    color: #718096;
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
 .calculator-form {
@@ -149,43 +388,79 @@ body {
     gap: 1.5rem;
 }
 
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+.form-section {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
 }
 
-.form-group label {
-    font-weight: 500;
-    color: #4a5568;
+.form-section h3 {
+    color: #2d3748;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e2e8f0;
 }
 
-.form-group input,
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
 .form-group select {
+    width: 100%;
     padding: 0.8rem;
     border: 2px solid #e2e8f0;
     border-radius: 5px;
     font-size: 1rem;
     transition: border-color 0.3s;
+    background-color: white;
 }
 
-.form-group input:focus,
 .form-group select:focus {
     outline: none;
     border-color: #667eea;
 }
 
+.form-note {
+    background: #e6fffa;
+    padding: 1rem;
+    border-radius: 5px;
+    border-left: 4px solid #38b2ac;
+    margin: 1.5rem 0;
+}
+
+.form-note p {
+    margin: 0;
+    color: #234e52;
+}
+
+/* Результаты расчета */
 .result-card {
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     padding: 2rem;
     border-radius: 10px;
 }
 
+.user-info-section {
+    background: #f7fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.user-info-section h4 {
+    color: #2d3748;
+    margin-bottom: 1rem;
+}
+
 .result-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     background: white;
     padding: 1.5rem;
     border-radius: 8px;
@@ -200,6 +475,30 @@ body {
 
 .result-item:last-child {
     border-bottom: none;
+}
+
+.result-item .label {
+    color: #718096;
+}
+
+.result-item .value {
+    font-weight: 500;
+    color: #2d3748;
+}
+
+.goal-loss {
+    color: #e53e3e;
+    font-weight: 500;
+}
+
+.goal-gain {
+    color: #38a169;
+    font-weight: 500;
+}
+
+.goal-maintenance {
+    color: #3182ce;
+    font-weight: 500;
 }
 
 .calorie-results {
@@ -237,132 +536,16 @@ body {
 .calorie-desc {
     color: #718096;
     font-size: 0.9rem;
+    margin-bottom: 0.25rem;
 }
 
-.history-container {
-    margin: 2rem auto;
-    max-width: 1000px;
+.calorie-info {
+    font-size: 0.85rem;
+    color: #718096;
+    margin-top: 0.25rem;
 }
 
-.history-list {
-    display: grid;
-    gap: 1.5rem;
-}
-
-.history-card {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.history-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid #e2e8f0;
-}
-
-.goal-badge {
-    padding: 0.3rem 1rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: 500;
-}
-
-.goal-badge.loss {
-    background: #fed7d7;
-    color: #c53030;
-}
-
-.goal-badge.gain {
-    background: #c6f6d5;
-    color: #22543d;
-}
-
-.goal-badge.maintenance {
-    background: #bee3f8;
-    color: #2c5282;
-}
-
-.history-info {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.info-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem;
-    background: #f7fafc;
-    border-radius: 5px;
-}
-
-.calorie-summary {
-    display: flex;
-    justify-content: space-around;
-    padding: 1rem;
-    background: #f7fafc;
-    border-radius: 8px;
-}
-
-.summary-item {
-    text-align: center;
-}
-
-.summary-item.highlight {
-    color: #667eea;
-    font-weight: 700;
-}
-
-.empty-history {
-    text-align: center;
-    padding: 3rem;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-footer {
-    background: #2d3748;
-    color: white;
-    text-align: center;
-    padding: 2rem 0;
-    margin-top: 4rem;
-}
-
-@media (max-width: 768px) {
-    .navbar .container {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .nav-links {
-        gap: 1rem;
-    }
-
-    .hero-content h2 {
-        font-size: 2rem;
-    }
-
-    .calorie-results {
-        grid-template-columns: 1fr;
-    }
-
-    .result-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .calorie-summary {
-        flex-direction: column;
-        gap: 1rem;
-    }
-}
-
+/* Секция БЖУ */
 .macros-section {
     background: white;
     padding: 2rem;
@@ -500,6 +683,7 @@ footer {
     color: #2d3748;
 }
 
+/* План питания */
 .meal-plan-section {
     background: white;
     padding: 2rem;
@@ -538,10 +722,468 @@ footer {
     color: #4a5568;
 }
 
+.result-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid #e2e8f0;
+}
+
+/* Личный кабинет */
+.dashboard-container {
+    margin: 2rem auto;
+    max-width: 1200px;
+}
+
+.dashboard-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.dashboard-header h2 {
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+}
+
+.welcome-text {
+    color: #718096;
+    font-size: 1.1rem;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+}
+
+.dashboard-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.user-info-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.user-info-card h3 {
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.user-details {
+    margin-bottom: 1.5rem;
+}
+
+.detail-item {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.detail-item .label {
+    display: block;
+    color: #718096;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.detail-item .value {
+    font-size: 1rem;
+    color: #2d3748;
+    font-weight: 500;
+}
+
+.logout-section {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+.quick-actions {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.quick-actions h3 {
+    color: #2d3748;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.btn-action {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    color: #2d3748;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    transition: all 0.2s;
+}
+
+.btn-action:hover {
+    background: #edf2f7;
+    border-color: #cbd5e0;
+    transform: translateY(-2px);
+}
+
+.btn-action:last-child {
+    margin-bottom: 0;
+}
+
+.btn-action span {
+    margin-left: 0.5rem;
+    font-weight: 500;
+}
+
+/* Статистика в дашборде */
+.stats-section {
+    margin-bottom: 2rem;
+}
+
+.stats-section h3 {
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+}
+
+.stat-icon {
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-label {
+    display: block;
+    color: #718096;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2d3748;
+}
+
+/* Последние расчеты в дашборде */
+.recent-calculations {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.section-header h3 {
+    color: #2d3748;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.view-all {
+    color: #4299e1;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.view-all:hover {
+    text-decoration: underline;
+}
+
+.calculations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.calculation-item {
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.calculation-item:hover {
+    border-color: #cbd5e0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.calc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.calc-date {
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+.calc-goal {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.calc-goal.loss {
+    background: #fed7d7;
+    color: #c53030;
+}
+
+.calc-goal.gain {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.calc-goal.maintenance {
+    background: #bee3f8;
+    color: #2c5282;
+}
+
+.calc-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.calc-detail {
+    display: flex;
+    flex-direction: column;
+}
+
+.calc-detail .label {
+    color: #718096;
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+}
+
+.calc-detail .value {
+    font-weight: 500;
+    color: #2d3748;
+}
+
+.calc-params {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.calc-params .param {
+    font-size: 0.85rem;
+    color: #718096;
+    padding: 0.25rem 0.5rem;
+    background: #f7fafc;
+    border-radius: 4px;
+}
+
+/* Состояние пустого списка */
+.empty-state {
+    background: white;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.5;
+}
+
+.empty-state h3 {
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+    color: #718096;
+    margin-bottom: 1.5rem;
+}
+
+/* История расчетов */
+.history-container {
+    margin: 2rem auto;
+    max-width: 1000px;
+}
+
+.history-info {
+    color: #718096;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.history-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    background: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.history-list {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.history-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.history-header h3 {
+    color: #2d3748;
+    font-size: 1.1rem;
+}
+
+.history-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btn-delete {
+    background: #fc8181;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+}
+
+.btn-delete:hover {
+    background: #f56565;
+}
+
+.history-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background: #f7fafc;
+    border-radius: 5px;
+}
+
+.info-row span:first-child {
+    color: #718096;
+}
+
+.info-row span:last-child {
+    font-weight: 500;
+    color: #2d3748;
+}
+
+.calorie-summary {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    background: #f7fafc;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.summary-item {
+    text-align: center;
+}
+
+.summary-item span {
+    display: block;
+    color: #718096;
+    margin-bottom: 0.5rem;
+}
+
+.summary-item strong {
+    font-size: 1.2rem;
+    color: #2d3748;
+}
+
+.summary-item.highlight {
+    color: #667eea;
+}
+
+.summary-item.highlight strong {
+    color: #667eea;
+}
+
 .macros-summary {
     margin-top: 1rem;
     padding-top: 1rem;
     border-top: 1px solid #e2e8f0;
+}
+
+.macros-summary h4 {
+    color: #2d3748;
+    margin-bottom: 0.5rem;
 }
 
 .macros-bars {
@@ -579,92 +1221,48 @@ footer {
     background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
 }
 
-.form-section {
+.empty-history {
+    text-align: center;
+    padding: 3rem;
     background: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.form-section h3 {
-    color: #2d3748;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid #e2e8f0;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-.form-note {
-    background: #e6fffa;
-    padding: 1rem;
-    border-radius: 5px;
-    border-left: 4px solid #38b2ac;
-    margin: 1.5rem 0;
-}
-
-.form-note p {
-    margin: 0;
-    color: #234e52;
-}
-
-.btn-large {
-    padding: 1rem 3rem;
-    font-size: 1.1rem;
-    width: 100%;
-    margin-top: 1rem;
-}
-
-.result-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 2px solid #e2e8f0;
-}
-
-.user-info-section {
-    background: #f7fafc;
-    padding: 1.5rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-}
-
-.user-info-section h4 {
-    color: #2d3748;
-    margin-bottom: 1rem;
-}
-
-.calorie-info {
-    font-size: 0.85rem;
+.empty-history p {
     color: #718096;
-    margin-top: 0.25rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
 }
 
-.goal-loss {
-    color: #e53e3e;
-    font-weight: 500;
+/* Футер */
+footer {
+    background: #2d3748;
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 4rem;
 }
 
-.goal-gain {
-    color: #38a169;
-    font-weight: 500;
-}
+/* Адаптивность */
+@media (max-width: 992px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
 
-.goal-maintenance {
-    color: #3182ce;
-    font-weight: 500;
-}
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
-@media (max-width: 768px) {
     .macros-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .calorie-results {
+        grid-template-columns: 1fr;
+    }
+
+    .result-grid {
         grid-template-columns: 1fr;
     }
 
@@ -676,6 +1274,67 @@ footer {
 
     .meal-plan {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .flash-messages-container {
+        left: 20px;
+        right: 20px;
+        max-width: none;
+        top: 60px;
+    }
+
+    .navbar .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .calc-details {
+        grid-template-columns: 1fr;
+    }
+
+    .calc-params {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .history-controls {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
     }
 
     .macro-values {
@@ -697,4 +1356,33 @@ footer {
         padding-left: 10px;
     }
 
+    .calorie-summary {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    .calculator-container,
+    .auth-card,
+    .result-card,
+    .history-card {
+        padding: 1rem;
+    }
+
+    .hero {
+        padding: 2rem 0;
+    }
+
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
 }

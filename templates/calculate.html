@@ -3,7 +3,7 @@
 {% block content %}
 <div class="calculator-container">
     <h2>Калькулятор калорий и БЖУ</h2>
-
+         <p class="welcome-text">Привет, {{ user.username }}! Рассчитайте вашу норму калорий.</p>
     {% if target_calories %}
     <div class="result-card">
         <h3>📊 Результаты расчета</h3>

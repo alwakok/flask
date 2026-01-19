@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Калькулятор калорий</title>
+    <title>Калькулятор калорий{% if user %} - {{ user.username }}{% endif %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -13,11 +13,30 @@
             <h1 class="logo">Калькулятор калорий</h1>
             <ul class="nav-links">
                 <li><a href="{{ url_for('index') }}">Главная</a></li>
-                <li><a href="{{ url_for('calculate') }}">Калькулятор</a></li>
-                <li><a href="{{ url_for('history') }}">История</a></li>
+                {% if user %}
+                    <li><a href="{{ url_for('dashboard') }}">Личный кабинет</a></li>
+                    <li><a href="{{ url_for('calculate') }}">Калькулятор</a></li>
+                    <li><a href="{{ url_for('history') }}">Мои расчеты</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Войти</a></li>
+                {% endif %}
             </ul>
         </div>
     </nav>
+
+    <!-- Сообщения Flash - теперь только сверху под навигацией -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages-container">
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ category }}">
+                        {{ message }}
+                        <button class="flash-close" onclick="this.parentElement.style.display='none'">×</button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
 
     <div class="container">
         {% block content %}{% endblock %}
@@ -25,9 +44,20 @@
 
     <footer>
         <div class="container">
-            <p>© 2026 Калькулятор калорий. Все права защищены.</p>
-            <p>Created by maxim ozhgihin isp 34-9</p>
+            <p>© 2024 Калькулятор калорий. Все права защищены.</p>
         </div>
     </footer>
+
+    <script>
+        // Автоматическое скрытие flash сообщений через 5 секунд
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                var flashes = document.querySelectorAll('.flash-message');
+                flashes.forEach(function(flash) {
+                    flash.style.display = 'none';
+                });
+            }, 5000);
+        });
+    </script>
 </body>
 </html>

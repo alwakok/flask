@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <h2>Регистрация</h2>
+        
+        <form method="POST" class="auth-form">
+            <div class="form-group">
+                <label for="username">Имя пользователя *</label>
+                <input type="text" id="username" name="username" required 
+                       placeholder="Введите имя пользователя" minlength="3" maxlength="50">
+                <small>От 3 до 50 символов</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email (необязательно)</label>
+                <input type="email" id="email" name="email" 
+                       placeholder="Введите ваш email">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Пароль *</label>
+                <input type="password" id="password" name="password" required 
+                       placeholder="Введите пароль" minlength="6">
+                <small>Минимум 6 символов</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirm_password">Подтвердите пароль *</label>
+                <input type="password" id="confirm_password" name="confirm_password" required 
+                       placeholder="Подтвердите пароль">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+        </form>
+        
+        <div class="auth-links">
+            <p>Уже есть аккаунт? <a href="{{ url_for('login') }}">Войдите</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="profile-container">
+    <h2>Мой профиль</h2>
+    
+    <div class="profile-card">
+        <div class="profile-info">
+            <div class="info-item">
+                <span class="label">Имя пользователя:</span>
+                <span class="value">{{ user.username }}</span>
+            </div>
+            
+            {% if user.email %}
+            <div class="info-item">
+                <span class="label">Email:</span>
+                <span class="value">{{ user.email }}</span>
+            </div>
+            {% endif %}
+            
+            <div class="info-item">
+                <span class="label">Дата регистрации:</span>
+                <span class="value">Сегодня</span>
+            </div>
+        </div>
+        
+        <div class="profile-actions">
+            <a href="{{ url_for('logout') }}" class="btn btn-warning">Выйти</a>
+        </div>
+    </div>
+    
+    <div class="profile-stats">
+        <h3>Статистика</h3>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-label">Всего расчетов:</span>
+                <span class="stat-value">15</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Цель "Похудение":</span>
+                <span class="stat-value">8</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Цель "Набор массы":</span>
+                <span class="stat-value">5</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Цель "Поддержание":</span>
+                <span class="stat-value">2</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

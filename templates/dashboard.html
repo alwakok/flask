@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h2>Личный кабинет</h2>
+        <p class="welcome-text">Добро пожаловать, {{ user.username }}!</p>
+    </div>
+
+    <div class="dashboard-grid">
+        <!-- Левая колонка - информация о пользователе -->
+        <div class="dashboard-sidebar">
+            <div class="user-info-card">
+                <h3>👤 Ваш профиль</h3>
+                <div class="user-details">
+                    <div class="detail-item">
+                        <span class="label">Имя пользователя:</span>
+                        <span class="value">{{ user.username }}</span>
+                    </div>
+
+                    {% if user.email %}
+                    <div class="detail-item">
+                        <span class="label">Email:</span>
+                        <span class="value">{{ user.email }}</span>
+                    </div>
+                    {% endif %}
+
+                    <div class="detail-item">
+                        <span class="label">Всего расчетов:</span>
+                        <span class="value">{{ calculations|length }}</span>
+                    </div>
+                </div>
+
+                <div class="logout-section">
+                    <a href="{{ url_for('logout') }}" class="btn btn-warning">Выйти из аккаунта</a>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <h3>📊 Быстрые действия</h3>
+                <a href="{{ url_for('calculate') }}" class="btn-action">
+                    <span>🧮 Новый расчет</span>
+                </a>
+                <a href="{{ url_for('history') }}" class="btn-action">
+                    <span>📋 Мои расчеты</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Правая колонка - статистика и последние расчеты -->
+        <div class="dashboard-main">
+            <div class="stats-section">
+                <h3>📈 Ваша статистика</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-content">
+                            <span class="stat-label">Всего расчетов</span>
+                            <span class="stat-value">{{ calculations|length }}</span>
+                        </div>
+                    </div>
+
+                    {% if calculations %}
+                    {% set loss_count = calculations|selectattr('goal', 'equalto', 'loss')|list|length %}
+                    {% set gain_count = calculations|selectattr('goal', 'equalto', 'gain')|list|length %}
+                    {% set maint_count = calculations|selectattr('goal', 'equalto', 'maintenance')|list|length %}
+
+                    <div class="stat-card">
+                        <div class="stat-icon">⬇️</div>
+                        <div class="stat-content">
+                            <span class="stat-label">Цель "Похудение"</span>
+                            <span class="stat-value">{{ loss_count }}</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">⬆️</div>
+                        <div class="stat-content">
+                            <span class="stat-label">Цель "Набор массы"</span>
+                            <span class="stat-value">{{ gain_count }}</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">⚖️</div>
+                        <div class="stat-content">
+                            <span class="stat-label">Цель "Поддержание"</span>
+                            <span class="stat-value">{{ maint_count }}</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if calculations %}
+            <div class="recent-calculations">
+                <div class="section-header">
+                    <h3>🕐 Последние расчеты</h3>
+                    <a href="{{ url_for('history') }}" class="view-all">Все расчеты →</a>
+                </div>
+
+                <div class="calculations-list">
+                    {% for calc in calculations[:5] %}
+                    <div class="calculation-item">
+                        <div class="calc-header">
+                            <span class="calc-date">{{ calc.timestamp[:16] }}</span>
+                            <span class="calc-goal {{ calc.goal }}">
+                                {{ "Похудение" if calc.goal == 'loss' else "Набор массы" if calc.goal == 'gain' else "Поддержание" }}
+                            </span>
+                        </div>
+                        <div class="calc-details">
+                            <div class="calc-detail">
+                                <span class="label">Калории:</span>
+                                <span class="value">{{ calc.target_calories }}</span>
+                            </div>
+                            <div class="calc-detail">
+                                <span class="label">БЖУ:</span>
+                                <span class="value">{{ calc.protein_g }}г/{{ calc.fat_g }}г/{{ calc.carbs_g }}г</span>
+                            </div>
+                        </div>
+                        <div class="calc-params">
+                            <span class="param">Возраст: {{ calc.age }}</span>
+                            <span class="param">Вес: {{ calc.weight }}кг</span>
+                            <span class="param">Рост: {{ calc.height }}см</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <div class="empty-icon">📋</div>
+                <h3>У вас еще нет расчетов</h3>
+                <p>Создайте свой первый расчет, чтобы увидеть статистику здесь</p>
+                <a href="{{ url_for('calculate') }}" class="btn btn-primary">Сделать первый расчет</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
