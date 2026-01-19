@@ -1,8 +1,4 @@
 Калькулятор калорий и БЖУ на Flask
-https://img.shields.io/badge/Python-3.8+-blue.svg
-https://img.shields.io/badge/Flask-2.3.3-green.svg
-https://img.shields.io/badge/SQLite-3-lightgrey.svg
-https://img.shields.io/badge/License-MIT-yellow.svg
 
 Веб-приложение для расчета дневной нормы калорий и баланса БЖУ (белки, жиры, углеводы) в зависимости от физических параметров и целей пользователя.
 
@@ -145,5 +141,6 @@ TDEE: 2760 ккал
 
 🌐 Демо
 https://mickson.pythonanywhere.com
+
 
 
