@@ -97,6 +97,8 @@ http://localhost:5000
 
 Получите результаты расчета
 
+<img width="563" height="815" alt="image" src="https://github.com/user-attachments/assets/d2693f93-4d13-4254-b9e2-88ff145bb630" />
+
 ----------------------------------------------------------------------------------------------------
 
 С регистрацией
@@ -108,6 +110,16 @@ http://localhost:5000
 Перейдите в "Личный кабинет" для просмотра статистики
 
 Откройте "Мои расчеты" для просмотра истории
+
+<img width="370" height="584" alt="image" src="https://github.com/user-attachments/assets/ba05bf18-f94c-4a01-9cc6-07fd5a695415" />
+
+<img width="379" height="413" alt="image" src="https://github.com/user-attachments/assets/4a99d8de-b55d-4df1-aa1d-de841f7cc9f1" />
+
+<img width="909" height="630" alt="image" src="https://github.com/user-attachments/assets/986ce71e-3fda-4708-ac84-545ce9f9948b" />
+
+<img width="900" height="543" alt="image" src="https://github.com/user-attachments/assets/da6a76c4-7959-4a3a-a777-694ce4b0044c" />
+
+
 
 ----------------------------------------------------------------------------------------------------
 
@@ -192,6 +204,11 @@ Frontend: HTML, CSS, Jinja2
 Формулы: Mifflin-St Jeor Equation
 
 ----------------------------------------------------------------------------------------------------
+
+Демо: https://mickson.pythonanywhere.com
+
+----------------------------------------------------------------------------------------------------
+
 
 
 
