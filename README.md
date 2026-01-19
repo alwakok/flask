@@ -137,14 +137,13 @@ TDEE = BMR × коэффициент активности
 
 <img width="1872" height="948" alt="image" src="https://github.com/user-attachments/assets/e432f0b2-54b6-44a7-ae0e-5d0aaca1056d" />
 
-Форма для сбора данных
+Форма для сбора данных/калькулятор
 
-<img width="1001" height="928" alt="image" src="https://github.com/user-attachments/assets/77fd358c-7dc0-4084-902b-9d3e0f5b9e51" />
+<img width="1001" height="928" alt="image" src="https://github.com/user-attachments/assets/77fd358c-7dc0-4084-902b-9d3e0f5b9e51" /> 
 
-Калькулятор
+Выходные данных
 
-<img width="988" height="854" alt="image" src="https://github.com/user-attachments/assets/4f8c301d-2c87-468b-996a-c6d2ce7a8456" />
-
+<img width="988" height="854" alt="image" src="https://github.com/user-attachments/assets/4f8c301d-2c87-468b-996a-c6d2ce7a8456" /> <img width="690" height="865" alt="image" src="https://github.com/user-attachments/assets/aad510b4-d001-4ee3-8f42-ed2a978b891e" /> <img width="738" height="693" alt="image" src="https://github.com/user-attachments/assets/d823cf0c-b564-441f-83fb-a3878d8fc441" />
 
 Страница с полным расчетом калорий и БЖУ для ваших целей
 
@@ -183,6 +182,7 @@ TDEE: 2760 ккал
 🌐 Демо
 
 https://mickson.pythonanywhere.com
+
 
 
 
