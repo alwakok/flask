@@ -42,21 +42,8 @@ git clone https://github.com/alwakok/flask
 py -m venv venv
 
 
-📁 Структура проекта
-calorie_calculator/
-├── app.py              # Основное приложение Flask
-├── database.py         # Работа с базой данных
-├── models.py           # Модели и логика расчета
-├── requirements.txt    # Зависимости Python
-├── data/
-│   └── calories.db     # База данных SQLite
-├── static/
-│   └── style.css       # Стили CSS
-└── templates/
-    ├── base.html       # Базовый шаблон
-    ├── index.html      # Главная страница
-    ├── calculate.html  # Страница калькулятора
-    └── history.html    # История расчетов
+<img width="362" height="303" alt="image" src="https://github.com/user-attachments/assets/a2e4624c-643b-4632-b16a-81155b4afcc0" />
+
 
 📝 Как пользоваться
 
@@ -189,6 +176,7 @@ TDEE: 2760 ккал
 🌐 Демо
 
 https://mickson.pythonanywhere.com
+
 
 
 
