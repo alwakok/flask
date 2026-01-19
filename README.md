@@ -135,6 +135,9 @@ TDEE = BMR × коэффициент активности
 
 Главная страница
 
+<img width="1872" height="948" alt="image" src="https://github.com/user-attachments/assets/e432f0b2-54b6-44a7-ae0e-5d0aaca1056d" />
+
+
 Калькулятор
 
 Форма для сбора данных
@@ -176,6 +179,7 @@ TDEE: 2760 ккал
 🌐 Демо
 
 https://mickson.pythonanywhere.com
+
 
 
 
